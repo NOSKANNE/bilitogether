@@ -1,0 +1,314 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* 影院表面 token（房间页专用，浅/深主题下恒为深色值，见 :root 定义） */
+  --color-cinema: var(--cinema);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-border: var(--surface-border);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-surface-muted-foreground: var(--surface-muted-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ===== BiliTogether 主题 ===== */
+:root {
+  --primary: #fb7299;
+  --primary-foreground: #ffffff;
+  --ring: #fb7299;
+
+  /* ===== 影院表面 token（房间页专用）=====
+     房间页与 B站/YouTube 观影页惯例一致：无论全局深浅色，永远沉浸深色。
+     这组 token 在 :root 直接定义为深色值且不随 .dark 翻转，
+     房间组件（含 Portal 弹层）统一引用，保证双主题下视觉恒定。 */
+  --cinema: #09090b;                    /* 页面基底（zinc-950） */
+  --surface: #18181b;                   /* 主面板（zinc-900） */
+  --surface-2: #27272a;                 /* 次级卡片/输入框（zinc-800） */
+  --surface-3: #3f3f46;                 /* hover/轨道/强分隔（zinc-700） */
+  --surface-border: rgba(255, 255, 255, 0.1);
+  --surface-foreground: #f4f4f5;        /* 主文字（zinc-100） */
+  --surface-muted-foreground: #a1a1aa;  /* 次要文字（zinc-400） */
+}
+
+/* 深浅色原生控件/滚动条色域提示 */
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+/* 自定义细滚动条（房间内深色面板） */
+.bt-scroll::-webkit-scrollbar,
+[data-slot="scroll-area-viewport"]::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.bt-scroll::-webkit-scrollbar-track,
+[data-slot="scroll-area-viewport"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+.bt-scroll::-webkit-scrollbar-thumb,
+[data-slot="scroll-area-viewport"]::-webkit-scrollbar-thumb {
+  background: rgba(251, 114, 153, 0.35);
+  border-radius: 999px;
+}
+.bt-scroll::-webkit-scrollbar-thumb:hover,
+[data-slot="scroll-area-viewport"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 114, 153, 0.6);
+}
+
+/* 首页浅色区域滚动条 */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 114, 153, 0.45) transparent;
+}
+
+/* B站 iframe 在深色容器内的呈现 */
+#bili-player-iframe {
+  color-scheme: light;
+}
+
+/* ============ 原生模式自绘弹幕 ============ */
+.danmaku-item {
+  position: absolute;
+  white-space: nowrap;
+  word-break: keep-all;
+  font-weight: 600;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  /* 经典黑描边 + 阴影，深浅画面都可读 */
+  text-shadow:
+    0 0 1px rgba(0, 0, 0, 0.9),
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    -1px -1px 2px rgba(0, 0, 0, 0.8);
+  will-change: transform, opacity;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============ 首页深色氛围：星空 / 噪点 / 辉光 ============ */
+/* 星空：三层不同密度的白点 radial-gradient 平铺，缓慢闪烁 */
+.bt-stars {
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
+    radial-gradient(1px 1px at 38% 68%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 61% 14%, rgba(255, 255, 255, 0.8) 50%, transparent 51%),
+    radial-gradient(2px 2px at 78% 44%, rgba(251, 114, 153, 0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 76%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 25% 86%, rgba(255, 255, 255, 0.75) 50%, transparent 51%),
+    radial-gradient(1px 1px at 52% 38%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 69% 90%, rgba(255, 214, 224, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 54%, rgba(255, 255, 255, 0.65) 50%, transparent 51%),
+    radial-gradient(1px 1px at 94% 8%, rgba(255, 255, 255, 0.55) 50%, transparent 51%);
+  background-size: 640px 640px, 480px 480px, 560px 560px, 720px 720px, 520px 520px, 600px 600px, 440px 440px, 680px 680px, 500px 500px, 760px 760px;
+  animation: bt-twinkle 7s ease-in-out infinite alternate;
+}
+@keyframes bt-twinkle {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bt-stars {
+    animation: none;
+  }
+}
+
+/* 噪点纹理：SVG feTurbulence data-uri，overlay 混合增加质感 */
+.bt-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+}
+
+/* 列表条目入场：淡入上浮（榜单/队列共用，delay 由 inline style 递增） */
+@keyframes bt-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.bt-fade-up {
+  animation: bt-fade-up 0.35s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bt-fade-up {
+    animation: none;
+  }
+}
+
+/* 深色模式下品牌粉流光扫过 hero 标题（仅深色启用，浅色保持纯色文字） */
+@keyframes bt-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.dark .bt-shimmer-text {
+  background: linear-gradient(110deg, #fb7299 40%, #ffd6e0 50%, #fb7299 60%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: bt-shimmer 5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dark .bt-shimmer-text {
+    animation: none;
+    background: none;
+    color: #fb7299;
+  }
+}
+
+/* 聊天「正在输入」三点跳动（aria-live 文案外的装饰点） */
+@keyframes bt-typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+.bt-typing-dot {
+  display: inline-block;
+  animation: bt-typing-bounce 1.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bt-typing-dot {
+    animation: none;
+  }
+}
