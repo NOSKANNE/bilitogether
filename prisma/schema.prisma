@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Room {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  creatorName String
+  bvid        String?
+  page        Int      @default(1)
+  title       String?
+  cover       String?
+  upName      String?
+  duration    Int      @default(0)
+  quality     Int      @default(64)
+  rate        Float    @default(1)
+  danmaku     Boolean  @default(true)
+  loop        String   @default("off")
+  /** 房间设置 JSON：{ allowSubmit, allowMoment }（房主权限开关，重启不丢） */
+  settings    String   @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  playlist    PlaylistItem[]
+}
+
+model PlaylistItem {
+  id       String   @id @default(cuid())
+  roomId   String
+  room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  bvid     String
+  page     Int      @default(1)
+  title    String
+  cover    String?
+  upName   String?
+  duration Int      @default(0)
+  addedBy  String   @default("")
+  addedAt  DateTime @default(now())
+}
+
+/** 观看时长持久化（房间维度按用户累计，重启服务不丢失） */
+model WatchStat {
+  id        String   @id @default(cuid())
+  roomCode  String
+  uid       String
+  name      String   @default("")
+  seconds   Float    @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@unique([roomCode, uid])
+  @@index([roomCode])
+}
