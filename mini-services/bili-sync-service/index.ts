@@ -1107,8 +1107,10 @@ io.on('connection', (socket: Socket) => {
 })
 
 const PORT = 3003
-httpServer.listen(PORT, () => {
-  console.log(`BiliTogether sync service (socket.io) running on port ${PORT}`)
+// 监听 0.0.0.0：本机部署场景下，局域网设备 / Tailscale Funnel 才能访问 :3003
+// （仅监听 127.0.0.1 时，同机 Caddy 反代可用，但局域网/穿透无法直连）
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`BiliTogether sync service (socket.io) running on 0.0.0.0:${PORT}`)
 })
 
 /** 观看统计刷盘：每 30s 把所有房间的待写增量批量持久化到 SQLite */

@@ -1,0 +1,38 @@
+# BiliTogether 本机部署 Caddy 配置（Tailscale Funnel 方案）
+#
+# 角色：Funnel(443) → Caddy(:8080) → Next(:3000) / bili-sync(:3003)
+# - 普通 HTTP 请求（页面 / API）→ 反代到 :3000
+# - 带 ?XTransformPort=N 的请求 → 反代到 :N（socket.io 用 /?XTransformPort=3003）
+#
+# Caddy 只监听 :8080 明文（Funnel 已提供 HTTPS），不签证书。
+
+{
+	# 关闭 admin API（避免占用 2019 端口）
+	admin off
+	# Funnel 已终结 HTTPS，Caddy 这里不自动签证书
+	auto_https off
+}
+
+:8080 {
+	@transform_port_query {
+		query XTransformPort=*
+	}
+
+	handle @transform_port_query {
+		reverse_proxy localhost:{query.XTransformPort} {
+			header_up Host {host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Real-IP {remote_host}
+		}
+	}
+
+	handle {
+		reverse_proxy localhost:3000 {
+			header_up Host {host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Real-IP {remote_host}
+		}
+	}
+}
